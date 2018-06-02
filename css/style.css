@@ -34,3 +34,7 @@ pre, code, tt {
     font-family: "Ubunto Mono", monospace;
 }
 
+header .logo {
+    padding: 0;
+}
+
