@@ -143,4 +143,70 @@ while True:
 s.close()
 ```
 
+### bbsclient-v1.1.py
+
+```
+import socketfuncs
+import socket
+
+s = socket.socket()
+ip = input("IP: ")
+username = input("Username: ")
+s.connect((ip, 10333))
+msg = socketfuncs.receive_message(s)
+print(msg)
+socketfuncs.send_message(s, username)
+while True:
+	msg = input("Message: ")
+	socketfuncs.send_message(s, msg)
+	if msg == "quit":
+		break
+	elif msg == "dm":
+		msgto = input("To? ")
+		msg = input("Message (DM): ")
+		socketfuncs.send_message(s, msgto)
+		socketfuncs.send_message(s, msg)
+	elif msg == "list":
+		msgcount = int(socketfuncs.receive_message(s))
+		for i in range(msgcount):
+			m = socketfuncs.receive_message(s)
+			print(m)
+s.close()
+```
+
+### bbsserver-v1.1.py
+
+```
+import socketfuncs
+import socket
+
+s = socket.socket()
+s.bind(('0.0.0.0', 10333))
+
+msghistory = []
+while True:
+	s.listen(10)
+	(conn, address) = s.accept()
+	print("Got connection from {}".format(address))
+	socketfuncs.send_message(conn, "BBS Server 1.1 (jeckroth)")
+	username = socketfuncs.receive_message(conn)
+	while True:
+		msg = socketfuncs.receive_message(conn)
+		print("Message: {} {}".format(address[0], msg))
+		if msg == "quit":
+			break
+		elif msg == "dm":
+			msgto = socketfuncs.receive_message(conn)
+			msg = socketfuncs.receive_message(conn)
+			print("Got DM from {} to {}: {}".format(username, msgto, msg))
+		elif msg == "list":
+			socketfuncs.send_message(conn, str(len(msghistory)))
+			for m in msghistory:
+				socketfuncs.send_message(conn, m)
+		else:
+			msghistory.append("{} {}".format(address[0], msg))
+
+s.close()
+```
+
 
