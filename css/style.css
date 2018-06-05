@@ -32,6 +32,7 @@ ul.posts li {
 
 pre, code, tt {
     font-family: "Ubunto Mono", monospace;
+    line-height: 1.5;
 }
 
 header .logo {
