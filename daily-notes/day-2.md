@@ -1,9 +1,20 @@
 ---
-title: Day 1 Notes
+title: Day 2 Notes
 layout: note
 ---
 
-# Day 1 Notes
+# Day 2 Notes
+
+## TCP/IP notes
+
+Data are sent as packets.
+
+- TCP: handles the packets: deals with out-of-order, dropped packets, slow packets, etc.
+  - also handles ports
+- IP: where the packets go (IP addresses), routing
+  - each machine in the network keeps a "routing table" that says where to send packets based on their IP address
+  - the tables have to be dynamic as machines appear and disappear
+
 
 ## Python code
 
@@ -44,4 +55,38 @@ def send_message(s, msg):
         sent = s.send(msg[totalsent:].encode())
         totalsent = totalsent + sent
 ```
+
+### simpleserver.py
+
+```
+import socketfuncs
+import socket
+
+s = socket.socket()
+s.bind(('0.0.0.0', 10333))
+
+while True:
+	s.listen(10)
+	(conn, address) = s.accept()
+	print("Got connection from {}".format(address))
+	msg = socketfuncs.receive_message(conn)
+	print("Message: {}".format(msg))
+
+s.close()
+```
+
+### simpleclient.py
+
+```
+import socketfuncs
+import socket
+
+s = socket.socket()
+ip = input("IP: ")
+s.connect((ip, 10333))
+msg = input("Message: ")
+socketfuncs.send_message(s, msg)
+s.close()
+```
+
 
