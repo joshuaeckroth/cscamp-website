@@ -209,4 +209,27 @@ while True:
 s.close()
 ```
 
+### Questions for IT tour
+
+- what's the expected starting salary?
+- what do you do on a day to day basis?
+- how many virtual machines can one machine hold?
+- what do people break most often that you have to constantly fix?
+- what are you most tired of fixing?
+- what's the worst part of your job?
+- how much wifi coverage is on campus? (do you have routers in trees?)
+- has anyone hacked into the system?
+- how strong is your firewall?
+- what is the weakest part security wise?
+- how expensive is all this stuff?
+- how many people are on the staff?
+- why is the server room so small (# of machines)?
+- how do your backups work? do you have backups of your backups?
+- what happens if power goes out?
+- how often do you replace machines?
+- what is the power consumption of the servers?
+- how does cooling work?
+- do the machines ever get turned off?
+
+
 
