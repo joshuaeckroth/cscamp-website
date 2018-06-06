@@ -119,6 +119,9 @@ Update BBS client:
 DNS: 35.185.60.223
 
 ```
+import socketfuncs
+import socket
+
 names = {
 'bear': '35.237.248.144',
 'baboon': '35.237.14.26',
@@ -132,7 +135,66 @@ names = {
 'burgerking': '35.237.96.244',
 'barrel': '35.237.202.155',
 'buccaneer': '35.237.157.49',
-'broth': '35.237.63.63'
-}
+'broth': '35.237.63.63'}
+
+s = socket.socket()
+s.bind(('0.0.0.0', 10334))
+
+while True:
+    s.listen(10)
+    (conn, address) = s.accept()
+    print("Got connection from {}".format(address))
+    socketfuncs.send_message(conn, "DNS Server 1.0")
+    domain = socketfuncs.receive_message(conn)
+    if domainname in names:
+        socketfuncs.send_message(conn, names[domainname])
+    else:
+        socketfuncs.send_message(conn, "unknown domain")
+
+s.close()
 ```
 
+### bbsclient-with-dns-1.2.py
+
+```
+import socketfuncs
+import socket
+import sys
+
+domain = input("Domain: ")
+s2 = socket.socket()
+s2.connect(("127.0.0.1", 10334))
+msg = socketfuncs.receive_message(s2)
+if msg != "DNS Server 1.0":
+    print("Wrong DNS protocol")
+    sys.exit()
+socketfuncs.send_message(s2, domain)
+ip = socketfuncs.receive_message(s2)
+
+
+s = socket.socket()
+username = input("Username: ")
+s.connect((ip, 10333))
+msg = socketfuncs.receive_message(s)
+print(msg)
+if msg != "BBS Server 1.2":
+    print("Wrong protocol!")
+    sys.exit()
+socketfuncs.send_message(s, username)
+while True:
+    msg = input("Message: ")
+    socketfuncs.send_message(s, msg)
+    if msg == "quit":
+        break
+    elif msg == "dm":
+        msgto = input("To? ")
+        msg = input("Message (DM): ")
+        socketfuncs.send_message(s, msgto)
+        socketfuncs.send_message(s, msg)
+    elif msg == "list" or msg == "listdm" or msg == "listdms":
+        msgcount = int(socketfuncs.receive_message(s))
+        for i in range(msgcount):
+            m = socketfuncs.receive_message(s)
+            print(m)
+s.close()
+```
