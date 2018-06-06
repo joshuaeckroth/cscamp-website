@@ -146,8 +146,8 @@ while True:
     print("Got connection from {}".format(address))
     socketfuncs.send_message(conn, "DNS Server 1.0")
     domain = socketfuncs.receive_message(conn)
-    if domainname in names:
-        socketfuncs.send_message(conn, names[domainname])
+    if domain in names:
+        socketfuncs.send_message(conn, names[domain])
     else:
         socketfuncs.send_message(conn, "unknown domain")
 
@@ -163,7 +163,7 @@ import sys
 
 domain = input("Domain: ")
 s2 = socket.socket()
-s2.connect(("127.0.0.1", 10334))
+s2.connect(("35.185.60.223", 10334))
 msg = socketfuncs.receive_message(s2)
 if msg != "DNS Server 1.0":
     print("Wrong DNS protocol")
