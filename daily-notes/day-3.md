@@ -116,6 +116,8 @@ Update BBS client:
 
 ## Domain names
 
+DNS: 35.185.60.223
+
 ```
 names = {
 'bear': '35.237.248.144',
