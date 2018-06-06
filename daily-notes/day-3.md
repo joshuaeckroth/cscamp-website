@@ -94,5 +94,24 @@ while True:
 s.close()
 ```
 
+## DNS server
+
+Goal of DNS server:
+
+1. bind to port 10334
+2. accept connection
+3. send protocol info ("DNS Server 1.0")
+4. receive message containing domain name to check
+5. look in dictionary of names
+6. if name found in dictionary, send ip address
+7. else, send "unknown domain"
+
+Update BBS client:
+
+1. ask user for domain name
+2. open connection with DNS server
+3. ask DNS server for ip for given domain
+4. get IP from DNS server
+5. use IP to connect to BBS server (as usual)
 
 
