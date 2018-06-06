@@ -114,4 +114,23 @@ Update BBS client:
 4. get IP from DNS server
 5. use IP to connect to BBS server (as usual)
 
+## Domain names
+
+```
+names = {
+'bear': '35.237.248.144',
+'baboon': '35.237.14.26',
+'bishop': '35.185.60.223',
+'boone': '35.237.60.25',
+'beth': '35.237.10.113',
+'banana': '35.237.155.182',
+'bartlet': '35.237.41.103',
+'bescar': '35.237.69.209',
+'balloon': '35.237.82.158',
+'burgerking': '35.237.96.244',
+'barrel': '35.237.202.155',
+'buccaneer': '35.237.157.49',
+'broth': '35.237.63.63'
+}
+```
 
