@@ -15,6 +15,7 @@ Data are sent as packets.
   - each machine in the network keeps a "routing table" that says where to send packets based on their IP address
   - the tables have to be dynamic as machines appear and disappear
 
+[slides](/daily-notes/csss-2018-day2-slides.pdf)
 
 ## Python code
 
