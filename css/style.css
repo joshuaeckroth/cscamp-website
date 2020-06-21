@@ -39,3 +39,11 @@ header .logo {
     padding: 0;
 }
 
+li li {
+    color: #bbb;
+}
+
+li li li {
+    color: #777;
+}
+
