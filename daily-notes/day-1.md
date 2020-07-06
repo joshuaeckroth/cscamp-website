@@ -46,6 +46,8 @@ Defense:
 - Encryption
 - Antivirus
 
+---
+
 
 ```
 # gpa.py
@@ -84,6 +86,8 @@ if n > 0:
 	else:
 		print("You're doing fine.")
 ```
+
+---
 
 Python challenge for afternoon:
 
