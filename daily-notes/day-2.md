@@ -37,7 +37,6 @@ s.close()
 ```
 # client.py for chat (incomplete)
 
-```
 import socket
 import socketfuncs
 
