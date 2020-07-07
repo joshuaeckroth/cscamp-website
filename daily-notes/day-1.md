@@ -5,8 +5,6 @@ layout: note
 
 # Day 1 Notes
 
-## 9-10am Zoom
-
 Techniques of cybersecurity
 
 Red team / blue team:
