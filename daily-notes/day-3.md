@@ -76,4 +76,95 @@ Actual DNS solution:
 - this hierarchy avoids the extreme traffic at the root, while still ensuring
   (more or less, not real-time) that everyone's copy is up to date
 
+---
+
+Symmetric encryption demo in Python:
+
+```
+import encfuncs
+
+password = encfuncs.get_password()
+print(password)
+
+msg = input("Enter message: ")
+print("Message: " + msg)
+
+msg_enc = encfuncs.encrypt(msg, password)
+print("Encrypted message: " + msg_enc)
+
+password = encfuncs.get_password()
+print(password)
+
+orig_msg = encfuncs.decrypt(msg_enc, password)
+print("Decrypted message: " + orig_msg)
+```
+
+---
+
+Notes about encryption
+
+- Symmetric encryption:
+  - You have a key (password) that is used to encrypt the data
+  - Only this key can decrypt the data
+  - Issue: how to pre-share the key? (how does the other side know the key?)
+
+- Asymmetric encryption:
+  - One key is used for encryption, a different key is used for decryption
+  - Each person/machine/program will generally created two keys:
+    - Key A, Key B -- these always go together
+      - Impossible to guess B if you only have A, and vice versa
+    - Logic: if you encrypt with key A, you must decrypt with key B;
+      and vice versa
+  - Call one key public and one key private
+    - Public one is shared as widely as possible (a billboard is good)
+      - It's associated with your name/machine
+    - Private key should never be shared
+      - It might even have a password to protect it
+  - Result:
+    - If you encrypt a file with your private key, only your public key
+      can decrypt it
+      - This proves you encrypted the file (and no one else did)
+      - It's like a signature
+      - Everyone can read the file (everyone has your public key),
+        but they can verify you created the file
+    - If you encrypt a file with Alice's public key, only Alice's private key
+      can decrypt that file
+      - This ensures only Alice can read your file that you generated
+    - Do both: Bob wants to send Alice a message (secretly), and prove that
+      he sent it
+      - Bob encrypts the file with Alice's public key
+      - Bob then signs the file with his private key
+      - sends to Alice...
+      - Alice verifies Bob's signature with his public key
+      - then Alice decrypts the file with her private key
+  - Tools for asymmetric:
+    - PGP = Pretty Good Privacy
+    - gpg program on linux
+    - email: SMIME 
+
+- GPG commands
+  - Generate a key: gpg --gen-key
+  - Export your public key for uploading online: gpg --armor --export
+    - Then go to https://keyserver.ubuntu.com/ to upload
+  - Receive a public key: gpg --keyserver keyserver.ubuntu.com --recv-key user-id
+  - Encrypt a file for someone: gpg --recipient user-id --encrypt file
+  - Decrypt a file: gpg --output decryptedfile.txt --decrypt file
+  - Sign a file (prove it's from you): gpg --clearsign --sign file
+  - Verify a signature (prove it's from them): gpg --verify file
+  - Encrypt & sign: gpg --sign --recipient user-id --encrypt file
+```
+
+Afternoon tasks:
+
+- DNS server:
+  - Continue working on DNS server
+- Chat server:
+  - Encrypt all traffic with symmetric encryption
+- GPG, asymmetric encryption (see commands above):
+  - generate a key
+  - publish that key on the key server
+  - receive my public key: user id is 0e937ba99960ce0068947456c148b0e10386531b
+  - create a text file with some simple contents
+  - sign and encrypt that file
+  - I will then copy it this afternoon and verify the signature and decrypt it
 
