@@ -142,6 +142,7 @@ Notes about encryption
     - gpg program on linux
     - email: SMIME 
 
+```
 - GPG commands
   - Generate a key: gpg --gen-key
   - Export your public key for uploading online: gpg --armor --export
@@ -152,6 +153,7 @@ Notes about encryption
   - Sign a file (prove it's from you): gpg --clearsign --sign file
   - Verify a signature (prove it's from them): gpg --verify file
   - Encrypt & sign: gpg --sign --recipient user-id --encrypt file
+```
 
 ---
 
