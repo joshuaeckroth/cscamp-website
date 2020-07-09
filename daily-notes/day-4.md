@@ -39,16 +39,22 @@ Challenge for the break:
 
 Password cracking techniques:
 
-- `hashcat --force --status -o cracked.txt -m 0 -a 0 hashes.txt english2.txt`
-- `hashcat --force --status -o cracked.txt -m 0 -a 0 hashes.txt english2.txt -r /usr/share/hashcat/rules/best64.rule`
+```
+hashcat --force --status -o cracked.txt -m 0 -a 0 hashes.txt english2.txt
+hashcat --force --status -o cracked.txt -m 0 -a 0 hashes.txt english2.txt -r /usr/share/hashcat/rules/best64.rule
+```
 
 Find other password dictionaries online and download with:
 
-- `wget "http://....."
+```
+wget "http://....."
+```
 
 Also look at the other rules that come with hashcat:
 
-- `ls /usr/share/hashcat/rules`
+```
+ls /usr/share/hashcat/rules
+```
 
 Challenge! Crack these passwords (save them to a file first):
 
