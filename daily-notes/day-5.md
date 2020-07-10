@@ -15,8 +15,6 @@ Challenge for 10-11am:
 - Save the date/time with the post (like in my chat server)
   - http://cscamp.artifice.cc/daily-notes/day-2.html (second to last code example)
 
-```
-
 Python Flask:
 
 - run with command: `python3 -m flask run -h 0.0.0.0 -p 10080`
